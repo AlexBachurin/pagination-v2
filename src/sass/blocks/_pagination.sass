@@ -1,0 +1,63 @@
+.pagination
+    display: grid
+    place-items: center
+    min-height: 100vh
+    background: #20b2aa
+    &__container
+        max-width: 540px
+        margin: 0 auto
+    &__items
+        display: grid
+        grid-template-columns: 1fr 1fr
+        grid-template-rows: 150px
+        grid-auto-rows: 150px
+        gap: 20px
+        min-height: 300px
+    &__item
+        display: grid
+        place-items: center
+        border: 1px solid #000
+        font-size: 1.5rem
+        padding: 3rem 3rem
+        margin-bottom: 30px
+    &__pages
+        display: flex
+        align-items: center
+        background: #fff
+        width: 100%
+        list-style-type: none
+        padding: 8px
+        border-radius: 50px
+        justify-content: center
+    & li
+        color: #20b2aa
+        line-height: 45px
+        text-align: center
+        font-size: 18px
+        font-weight: 500
+        cursor: pointer
+        transition: all 0.2s ease-in-out
+    &__number
+        height: 45px
+        width: 45px
+        border-radius: 50%
+        margin: 0 8px
+        &:hover
+            background: #20b2aa
+            color: #fff
+    &__dots
+        font-size: 22px
+        cursor: default
+    &__btn
+        padding: 0 20px
+        &_prev
+            border-radius: 25px 5px 5px 25px
+        &_next
+            border-radius: 5px 25px 25px 5px
+        &:hover
+            background: #20b2aa
+            color: #fff
+
+.pagination li.active
+    background: #20b2aa
+    color: #fff
