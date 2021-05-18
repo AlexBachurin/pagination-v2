@@ -72,7 +72,7 @@ function createPages(totalPages, currentPage) {
     let afterPages = currentPage + 1; //pages to show after current page
     if (currentPage > 1) { //if page value more than 1, add li with prev btn
         //add to liTag and assign onclick function with params of totalPages and currentPage - 1
-        liTag += `<li class="pagination__btn pagination__btn_prev" onclick="createPages(${totalPages}, ${currentPage - 1})"><i class="fas fa-angle-left"></i> Prev</li>`
+        liTag += `<li class="pagination__btn pagination__btn_prev" onclick="createPages(${totalPages}, ${currentPage - 1})"><i class="fas fa-angle-left"></i> <span class="pagination__btn-text">Prev</span></li>`
     }
     if (currentPage > 2) { //if page value > 2, then add new tag with value of 1
         liTag += ` <li class="pagination__number" onclick="createPages(${totalPages}, ${1})">1</li>`
@@ -133,7 +133,7 @@ function createPages(totalPages, currentPage) {
         liTag += ` <li class="pagination__number" onclick="createPages(${totalPages}, ${totalPages})">${totalPages}</li>`
     }
     if (currentPage < totalPages) { //if page value less then total amount of pages, then add li with next btn
-        liTag += `<li class="pagination__btn pagination__btn_next" onclick="createPages(${totalPages}, ${currentPage +1})"><i class="fas fa-angle-right"></i> Next</li>`
+        liTag += `<li class="pagination__btn pagination__btn_next" onclick="createPages(${totalPages}, ${currentPage +1})"><span class="pagination__btn-text">Next</span><i class="fas fa-angle-right"></i> </li>`
     }
 
 
