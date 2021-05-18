@@ -51,7 +51,7 @@ const pagesContainer = document.querySelector('.pagination__pages'),
     itemsContainer = document.querySelector('.pagination__items');
 
 //set variable how many items u want on page
-const itemsOnPage = 4;
+const itemsOnPage = 1;
 
 //how many pages to show
 const totalPages = pagesToShow(itemsOnPage);
@@ -74,7 +74,12 @@ function createPages(totalPages, page) {
     if (currentPage > 2) { //if page value > 2, then add new tag with value of 1
         liTag += ` <li class="pagination__number" onclick="createPages(${totalPages}, ${1})">1</li>`
         if (currentPage > 3) { //if page value > 3, then add dots
-            liTag += ` <li class="pagination__dots">...</li>`
+            liTag += ` <li class="pagination__dots">...
+                <form class="pagination__form" action="#">
+                    <input class="pagination__input" type="number">
+                    <button class="pagination__form-btn" type="submit">GO</button>
+                </form>
+            </li>`
         }
     }
 
@@ -115,7 +120,12 @@ function createPages(totalPages, page) {
     if (currentPage < totalPages - 1) { //if page value < totalpages - 1, then add new tag with value of totalpages
 
         if (currentPage < totalPages - 2) { //if page value < totalpages - 2, then add dots before last element
-            liTag += ` <li class="pagination__dots">...</li>`
+            liTag += ` <li class="pagination__dots">...
+            <form class="pagination__form" action="#">
+                <input class="pagination__input" type="number">
+                <button class="pagination__form-btn" type="submit">GO</button>
+            </form>
+        </li>`
         }
         liTag += ` <li class="pagination__number" onclick="createPages(${totalPages}, ${totalPages})">${totalPages}</li>`
     }
@@ -128,7 +138,44 @@ function createPages(totalPages, page) {
     pagesContainer.innerHTML = liTag;
     //show items for current page
     showItems(currentPage)
+
+    //get dots
+    const dots = document.querySelectorAll('.pagination__dots');
+    //if theres dots elements
+    if (dots.length) {
+        dots.forEach(dot => {
+            dot.addEventListener('click', (e) => { //get them and add event listener
+                const form = dot.querySelector('form'); //on dot click show form
+                form.classList.add('show-form')
+                form.addEventListener('submit', (e) => { //add event listener to submit
+                    e.preventDefault();
+                    const input = form.querySelector('input'); //get value from input
+                    let value = +input.value; // !!!important to transform to integer!!!
+                    if (value) { //check if user put something into input
+                        //check values range and make adjustments
+                        if (value <= 0) {
+                            value = 1;
+                            // pagesContainer.innerHTML = ''
+                            createPages(totalPages, value);
+                        } else if (value > totalPages) {
+                            value = totalPages;
+                            createPages(totalPages, value);
+                        } else {
+                            createPages(totalPages, value);
+                        }
+                    // else stay on same page
+                    } else {
+                        createPages(totalPages, currentPage)
+                    }
+                })
+            })
+        })
+    }
+
+
 }
+
+
 
 
 
@@ -141,7 +188,7 @@ function pagesToShow(itemsNum) {
 
 //show items
 function showItems(pageNum) {
-    
+
     //get items for current page
     const itemsArr = getItemsForCurPage(pageNum)
 

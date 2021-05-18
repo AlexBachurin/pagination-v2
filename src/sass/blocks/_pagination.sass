@@ -14,6 +14,7 @@
         gap: 20px
         min-height: 320px
         margin-bottom: 30px
+        // justify-content: center
     &__item
         display: grid
         place-items: center
@@ -37,6 +38,7 @@
         font-weight: 500
         cursor: pointer
         transition: all 0.2s ease-in-out
+        user-select: none
     &__number
         height: 45px
         width: 45px
@@ -46,6 +48,7 @@
             background: #20b2aa
             color: #fff
     &__dots
+        position: relative
         font-size: 22px
         cursor: default
     &__btn
@@ -57,7 +60,44 @@
         &:hover
             background: #20b2aa
             color: #fff
+    &__form
+        position: absolute
+        bottom: -33px
+        left: 50%
+        transform: translateX(-50%)
+        display: none
+    &__input
+        width: 30px
+        height: 24px
+        outline: none
+        border: 1px solid #000
+        margin-right: 2px
+        border-radius: 5px
+        color: #20b2aa
+        border-color: #20b2aa
+        padding-left: 10px
+        line-height: 18px
+        // caret-color: transparent
+    &__form-btn
+        // width: 30px
+        height: 22px
+        font-size: 11px
+        // padding: 2px 2px
+        text-align: center
+        cursor: pointer
+        background: #fff
+        color: #20b2aa
+        border: none
 
 .pagination li.active
     background: #20b2aa
     color: #fff
+
+.show-form
+    display: flex
+    align-items: center
+
+.pagination input::-webkit-outer-spin-button,
+.pagination input::-webkit-inner-spin-button
+    -webkit-appearance: none
+    margin: 0
