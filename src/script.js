@@ -51,7 +51,10 @@ const pagesContainer = document.querySelector('.pagination__pages'),
     itemsContainer = document.querySelector('.pagination__items');
 
 //set variable how many items u want on page
-const itemsOnPage = 1;
+const itemsOnPage = 2;
+
+//set container style depending on how much items to show
+setupItemsContainer(itemsOnPage);
 
 //how many pages to show
 const totalPages = pagesToShow(itemsOnPage);
@@ -61,8 +64,8 @@ createPages(totalPages, 1)
 
 
 //dynamically create pages
-function createPages(totalPages, page) {
-    let currentPage = page;
+function createPages(totalPages, currentPage) {
+
     let liTag = '';
     let active; // active class
     let beforePages = currentPage - 1; // pages to show before current page
@@ -205,4 +208,11 @@ function getItemsForCurPage(pageNum) {
     const to = from + itemsOnPage;
     //return items for current page
     return items.slice(from, to);
+}
+
+//setup item container
+function setupItemsContainer(itemsNum) {
+    if (itemsNum <= 2) {
+        itemsContainer.classList.add('small-container')
+    } 
 }

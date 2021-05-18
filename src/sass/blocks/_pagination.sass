@@ -24,12 +24,12 @@
         display: flex
         align-items: center
         background: #fff
-        width: 100%
+        min-width: 540px
         list-style-type: none
         padding: 8px
         border-radius: 50px
         justify-content: center
-        min-width: 440px
+        // min-width: 440px
     & li
         color: #20b2aa
         line-height: 45px
@@ -101,3 +101,7 @@
 .pagination input::-webkit-inner-spin-button
     -webkit-appearance: none
     margin: 0
+
+.small-container
+    grid-template-columns: 1fr
+    min-height: 150px
